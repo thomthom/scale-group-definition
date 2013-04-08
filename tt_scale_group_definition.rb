@@ -39,10 +39,10 @@ module TT::Plugins::ScaleGroupDefinition
   PLUGIN          = self
   PLUGIN_ID       = 'TT_ScaleGroupDefinition'.freeze
   PLUGIN_NAME     = 'Scale Group Definition'.freeze
-  PLUGIN_VERSION  = TT::Version.new(1,0,0).freeze
+  PLUGIN_VERSION  = TT::Version.new(1,0,1).freeze
   
   # Version information
-  RELEASE_DATE    = '22 Feb 13'.freeze
+  RELEASE_DATE    = '08 Apr 13'.freeze
   
   # Feature detection
   SUPPORT_MENU_POSITION = Sketchup::Menu.instance_method(:add_item).arity != 1
@@ -134,13 +134,18 @@ module TT::Plugins::ScaleGroupDefinition
 
   # @since 1.0.0
   def self.selected_group_scaled?
-    group = Sketchup.active_model.selection[0]
-    tr = group.transformation
-    x_scale = X_AXIS.transform( tr ).length
-    y_scale = Y_AXIS.transform( tr ).length
-    z_scale = Z_AXIS.transform( tr ).length
-    unit = 1.to_l
-    !( x_scale == unit && y_scale == unit && z_scale == unit )
+    selection = Sketchup.active_model.selection
+    if selection.empty?
+      false
+    else
+      group = Sketchup.active_model.selection[0]
+      tr = group.transformation
+      x_scale = X_AXIS.transform( tr ).length
+      y_scale = Y_AXIS.transform( tr ).length
+      z_scale = Z_AXIS.transform( tr ).length
+      unit = 1.to_l
+      !( x_scale == unit && y_scale == unit && z_scale == unit )
+    end
   end
 
   
