@@ -35,15 +35,6 @@ module TT::Plugins::ScaleGroupDefinition
   
   ### CONSTANTS ### ------------------------------------------------------------
   
-  # Plugin information
-  PLUGIN          = self
-  PLUGIN_ID       = 'TT_ScaleGroupDefinition'.freeze
-  PLUGIN_NAME     = 'Scale Group Definition'.freeze
-  PLUGIN_VERSION  = TT::Version.new(1,0,1).freeze
-  
-  # Version information
-  RELEASE_DATE    = '08 Apr 13'.freeze
-  
   # Feature detection
   SUPPORT_MENU_POSITION = Sketchup::Menu.instance_method(:add_item).arity != 1
   
@@ -65,22 +56,6 @@ module TT::Plugins::ScaleGroupDefinition
       self.build_context_menu( context_menu )
     }
   end 
-  
-  
-  ### LIB FREDO UPDATER ### ----------------------------------------------------
-  
-  # @return [Hash]
-  # @since 1.0.0
-  def self.register_plugin_for_LibFredo6
-    {   
-      :name => PLUGIN_NAME,
-      :author => 'thomthom',
-      :version => PLUGIN_VERSION.to_s,
-      :date => RELEASE_DATE,   
-      :description => 'Adds a Scale Definition feature for Groups.',
-      :link_info => 'http://sketchucation.com/forums/viewtopic.php?t=50811'
-    }
-  end
   
   
   ### MAIN SCRIPT ### ----------------------------------------------------------
